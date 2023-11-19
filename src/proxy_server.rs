@@ -35,7 +35,7 @@ impl ProxyServer {
                                 return;
                             }
                             log::debug!("Established: {} <-> {}", server_address, client_address);
-                            drop(bridge(server, client).await);
+                            drop(tokio::spawn(bridge(server, client)));
                             log::debug!("Disconnected: {} <-> {}", server_address, client_address);
                         });
                     } else {
