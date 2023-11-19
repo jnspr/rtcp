@@ -38,6 +38,8 @@ impl ProxyServer {
                             drop(bridge(server, client).await);
                             log::debug!("Disconnected: {} <-> {}", server_address, client_address);
                         });
+                    } else {
+                        log::warn!("A client connected without an active server");
                     }
                 }
             }
