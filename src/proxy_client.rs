@@ -16,7 +16,7 @@ impl ProxyClient {
         })
     }
 
-    pub async fn serve(mut self) -> Result<()> {
+    pub async fn serve(self) -> Result<()> {
         'retry: loop {
             log::info!("Connecting to proxy server");
             let mut server = match TcpStream::connect(&self.server_endpoint).await {
